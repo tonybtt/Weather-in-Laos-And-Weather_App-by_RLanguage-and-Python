@@ -1,0 +1,383 @@
+##install.packages("rvest")
+##install.packages("dplyr")
+##install.packages("ggplot2")
+##install.packages("tidyverse")
+##install.packages("plyr")
+library(plyr)
+library(rvest)
+library(dplyr)
+library(ggplot2)
+library(tidyverse)
+
+##
+url <- "https://weather.com/weather/tenday/l/d35fb30d5c2a1a36a480315b9d9e094b92f7230fc08e20dcb6312f5f00602546"
+url1<-"https://weather.com/weather/today/l/18.04,102.63?par=google&temp=c"
+url2<-"https://weather.com/weather/hourbyhour/l/d35fb30d5c2a1a36a480315b9d9e094b92f7230fc08e20dcb6312f5f00602546"
+url3<-"https://weather.com/weather/weekend/l/d35fb30d5c2a1a36a480315b9d9e094b92f7230fc08e20dcb6312f5f00602546"
+##
+AttapeuU <-"https://weather.com/weather/today/l/14.82,106.82?par=google&temp=c"
+KhammouaneU <-"https://weather.com/weather/today/l/17.40,104.83?par=google&temp=c"
+BokeoU <-"https://weather.com/weather/today/l/20.26,100.43?par=google&temp=c"
+BolikhamsaiU <-"https://weather.com/weather/today/l/18.40,103.67?par=google&temp=c"
+ChampasakU <-"https://weather.com/weather/today/l/15.12,105.82?par=google&temp=c"
+HouaphanhU <-"https://weather.com/weather/today/l/20.42,104.05?par=google&temp=c"
+LuangNamthaU <-"https://weather.com/weather/today/l/20.97,101.41?par=google&temp=c"
+LuangPrabangU <-"https://weather.com/weather/today/l/19.88,102.14?par=google&temp=c"
+OudomxayU <-"https://weather.com/weather/today/l/20.69,101.99?par=google&temp=c"
+PhongsalyU <-"https://weather.com/weather/today/l/21.68,102.11?par=google&temp=c"
+SalavanU <- "https://weather.com/weather/today/l/15.72,106.41?par=google&temp=c"
+SavannakhetU <-"https://weather.com/weather/today/l/16.57,104.77?par=google&temp=c"
+VientianeU <-"https://weather.com/weather/today/l/18.51,102.42?par=google&temp=c"
+SainyabuliU <-"https://weather.com/weather/today/l/19.25,101.71?par=google&temp=c"
+SekongU <-"https://weather.com/weather/today/l/15.34,106.72?par=google&temp=c"
+XaisombounU <-"https://weather.com/weather/today/l/476bb57a8b7b78cef1082ebf56556fba7f03781ea7c159265dcebe81175dabaf"
+XiangkhouangU <-"https://weather.com/weather/today/l/19.45,103.19?par=google&temp=c"
+
+ChanthabulyVTU <-"https://weather.com/weather/today/l/17.97,102.60?par=google&temp=c"
+SikhottabongVTU <-"https://weather.com/weather/today/l/17.97,102.57?par=google&temp=c"
+XaysetthaVTU <-"https://weather.com/weather/today/l/17.99,102.66?par=google&temp=c"
+SisattanakVTU <-"https://weather.com/weather/today/l/17.91,102.62?par=google&temp=c"
+XaythanyVTU <-"https://weather.com/weather/today/l/18.04,102.63?par=google&temp=c"
+HadxaifongVTU <-"https://weather.com/weather/today/l/17.89,102.74?par=google&temp=c"
+NaxaithongVTU <-"https://weather.com/weather/today/l/18.08,102.52?par=google&temp=c"
+SangthongVTU <-"https://weather.com/weather/today/l/18.09,102.29?par=google&temp=c"
+MayparkngumVTU <-"https://weather.com/weather/today/l/18.16,103.06?par=google&temp=c"
+
+##
+weatherten <- read_html(url)
+weathernow <- read_html(url1)
+weatherHourly <- read_html(url2)
+weatherweek <- read_html(url3)
+##
+AttapeuU <- read_html(AttapeuU)
+KhammouaneU <- read_html(KhammouaneU)
+BokeoU <- read_html(BokeoU)
+BolikhamsaiU <- read_html(BolikhamsaiU)
+ChampasakU <- read_html(ChampasakU)
+HouaphanhU <- read_html(HouaphanhU)
+LuangNamthaU <- read_html(LuangNamthaU)
+LuangPrabangU <- read_html(LuangPrabangU)
+OudomxayU <- read_html(OudomxayU)
+PhongsalyU <- read_html(PhongsalyU)
+SalavanU <- read_html(SalavanU)
+SavannakhetU <- read_html(SavannakhetU)
+VientianeU <- read_html(VientianeU)
+SainyabuliU <- read_html(SainyabuliU)
+SekongU <- read_html(SekongU)
+XaisombounU <- read_html(XaisombounU)
+XiangkhouangU <- read_html(XiangkhouangU)
+
+ChanthabulyVTU <- read_html(ChanthabulyVTU)
+SikhottabongVTU <- read_html(SikhottabongVTU)
+XaysetthaVTU <- read_html(XaysetthaVTU)
+SisattanakVTU <- read_html(SisattanakVTU)
+XaythanyVTU <- read_html(XaythanyVTU)
+HadxaifongVTU <- read_html(HadxaifongVTU)
+NaxaithongVTU <- read_html(NaxaithongVTU)
+SangthongVTU <- read_html(SangthongVTU)
+MayparkngumVTU <- read_html(MayparkngumVTU)
+##
+weatherweek %>%html_nodes(".DetailsSummary--daypartName--1Mebr")%>%html_text->dname
+weatherweek %>%html_nodes(".DetailsSummary--highTempValue--3x6cL")%>%html_text->Htem
+weatherweek %>%html_nodes(".DetailsSummary--lowTempValue--1DlJK")%>%html_text->Ltem
+weatherweek %>%html_nodes(".DetailsSummary--condition--mqdxh")%>%html_text->conditionweek
+weatherweek %>%html_nodes(".DetailsSummary--precip--2ARnx")%>%html_text->cofr
+weatherweek %>%html_nodes(".DetailsSummary--wind--Cv4BH")%>%html_text->windweek
+Htem<-as.numeric(sub("°", "",Htem))
+Htem<-5/9*(Htem-32)
+Htem<-sprintf("%.f",Htem)
+Htem<-as.numeric(Htem)
+Ltem<-as.numeric(sub("°", "",Ltem))
+Ltem<-5/9*(Ltem-32)
+Ltem<-sprintf("%.f",Ltem)
+Ltem<-as.numeric(Ltem)
+dname<-gsub("Fri","",dname)
+dname<-gsub("Sat","",dname)
+dname<-gsub("Sun","",dname)
+weatherweek_data <-data.frame(dname,Htem,Ltem,conditionweek,cofr,windweek)
+##
+weatherHourly%>%html_nodes(".DetailsSummary--daypartName--1Mebr")%>%html_text->hour
+weatherHourly%>%html_nodes(".DetailsSummary--temperature--3FMlw")%>%html_text->temperature
+weatherHourly%>%html_nodes(".DetailsSummary--condition--mqdxh")%>%html_text->condition
+weatherHourly%>%html_nodes(".DetailsSummary--precip--2ARnx")%>%html_text->CofR
+weatherHourly%>%html_nodes(".DetailsSummary--wind--Cv4BH")%>%html_text->wind
+temperature<-as.numeric(sub("°", "",temperature))
+temperature<-5/9*(temperature-32)
+temperature<-sprintf("%.f",temperature)
+temperature<-as.numeric(temperature)
+hour<-gsub("am","",hour)
+hour<-gsub("pm","",hour)
+hour<-as.numeric(hour)
+weatherHourly_data<- data.frame(hour,temperature,condition,CofR,wind)
+##
+weathernow%>% html_nodes(".CurrentConditions--location--1Ayv3") %>% html_text()->locations
+weathernow%>% html_nodes(".CurrentConditions--tempValue--3KcTQ") %>% html_text()->wtnow
+wtnow<-as.numeric(sub("°", "",wtnow))
+wtnow<-sprintf("%.f",wtnow)
+wtnow<-as.numeric(wtnow)
+weathernow_data<-data.frame(locations,wtnow)
+##
+AttapeuU%>% html_nodes(".CurrentConditions--location--1Ayv3") %>% html_text()->Attapeulocations
+AttapeuU%>% html_nodes(".CurrentConditions--tempValue--3KcTQ") %>% html_text()->Attapeuweathernow
+Attapeuweathernow<-as.numeric(sub("°", "",Attapeuweathernow))
+Attapeuweathernow<-sprintf("%.f",Attapeuweathernow)
+Attapeuweathernow<-as.numeric(Attapeuweathernow)
+Attapeuweathernow_data<-data.frame(Attapeulocations,Attapeuweathernow)
+Attapeu<-ggplot(Attapeuweathernow_data,aes(Attapeulocations,Attapeuweathernow))+geom_point(aes(color=Attapeuweathernow)) + ggtitle("Temperature Now") + theme(plot.title = element_text(lineheight=.8, face="bold"))+labs(y= "Temperature", x = "Location")+labs(colour = "Temperature Now(°C)")
+
+KhammouaneU%>% html_nodes(".CurrentConditions--location--1Ayv3") %>% html_text()->Khammouanelocations
+KhammouaneU%>% html_nodes(".CurrentConditions--tempValue--3KcTQ") %>% html_text()->Khammouaneweathernow
+Khammouaneweathernow<-as.numeric(sub("°", "",Khammouaneweathernow))
+Khammouaneweathernow<-sprintf("%.f",Khammouaneweathernow)
+Khammouaneweathernow<-as.numeric(Khammouaneweathernow)
+Khammouaneweathernow_data<-data.frame(Khammouanelocations,Khammouaneweathernow)
+Khammouane<-ggplot(Khammouaneweathernow_data,aes(Khammouanelocations,Khammouaneweathernow))+geom_point(aes(color=Khammouaneweathernow)) + ggtitle("Temperature Now") + theme(plot.title = element_text(lineheight=.8, face="bold"))+labs(y= "Temperature", x = "Location")+labs(colour = "Temperature Now(°C)")
+
+BokeoU%>% html_nodes(".CurrentConditions--location--1Ayv3") %>% html_text()->Bokeolocations
+BokeoU%>% html_nodes(".CurrentConditions--tempValue--3KcTQ") %>% html_text()->Bokeoweathernow
+Bokeoweathernow<-as.numeric(sub("°", "",Bokeoweathernow))
+Bokeoweathernow<-sprintf("%.f",Bokeoweathernow)
+Bokeoweathernow<-as.numeric(Bokeoweathernow)
+Bokeoweathernow_data<-data.frame(Bokeolocations,Bokeoweathernow)
+Bokeo<-ggplot(Bokeoweathernow_data,aes(Bokeolocations,Bokeoweathernow))+geom_point(aes(color=Bokeoweathernow)) + ggtitle("Temperature Now") + theme(plot.title = element_text(lineheight=.8, face="bold"))+labs(y= "Temperature", x = "Location")+labs(colour = "Temperature Now(°C)")
+
+BolikhamsaiU%>% html_nodes(".CurrentConditions--location--1Ayv3") %>% html_text()->Bolikhamsailocations
+BolikhamsaiU%>% html_nodes(".CurrentConditions--tempValue--3KcTQ") %>% html_text()->Bolikhamsaiweathernow
+Bolikhamsaiweathernow<-as.numeric(sub("°", "",Bolikhamsaiweathernow))
+Bolikhamsaiweathernow<-sprintf("%.f",Bolikhamsaiweathernow)
+Bolikhamsaiweathernow<-as.numeric(Bolikhamsaiweathernow)
+Bolikhamsaiweathernow_data<-data.frame(Bolikhamsailocations,Bolikhamsaiweathernow)
+Bolikhamsai<-ggplot(Bolikhamsaiweathernow_data,aes(Bolikhamsailocations,Bolikhamsaiweathernow))+geom_point(aes(color=Bolikhamsaiweathernow)) + ggtitle("Temperature Now") + theme(plot.title = element_text(lineheight=.8, face="bold"))+labs(y= "Temperature", x = "Location")+labs(colour = "Temperature Now(°C)")
+
+ChampasakU%>% html_nodes(".CurrentConditions--location--1Ayv3") %>% html_text()->Champasaklocations
+ChampasakU%>% html_nodes(".CurrentConditions--tempValue--3KcTQ") %>% html_text()->Champasakweathernow
+Champasakweathernow<-as.numeric(sub("°", "",Champasakweathernow))
+Champasakweathernow<-sprintf("%.f",Champasakweathernow)
+Champasakweathernow<-as.numeric(Champasakweathernow)
+Champasakweathernow_data<-data.frame(Champasaklocations,Champasakweathernow)
+Champasak<-ggplot(Champasakweathernow_data,aes(Champasaklocations,Champasakweathernow))+geom_point(aes(color=Champasakweathernow)) + ggtitle("Temperature Now") + theme(plot.title = element_text(lineheight=.8, face="bold"))+labs(y= "Temperature", x = "Location")+labs(colour = "Temperature Now(°C)")
+
+HouaphanhU%>% html_nodes(".CurrentConditions--location--1Ayv3") %>% html_text()->Houaphanhlocations
+HouaphanhU%>% html_nodes(".CurrentConditions--tempValue--3KcTQ") %>% html_text()->Houaphanhweathernow
+Houaphanhweathernow<-as.numeric(sub("°", "",Houaphanhweathernow))
+Houaphanhweathernow<-sprintf("%.f",Houaphanhweathernow)
+Houaphanhweathernow<-as.numeric(Houaphanhweathernow)
+Houaphanhweathernow_data<-data.frame(Houaphanhlocations,Houaphanhweathernow)
+Houaphanh<-ggplot(Houaphanhweathernow_data,aes(Houaphanhlocations,Houaphanhweathernow))+geom_point(aes(color=Houaphanhweathernow)) + ggtitle("Temperature Now") + theme(plot.title = element_text(lineheight=.8, face="bold"))+labs(y= "Temperature", x = "Location")+labs(colour = "Temperature Now(°C)")
+
+LuangNamthaU%>% html_nodes(".CurrentConditions--location--1Ayv3") %>% html_text()->LuangNamthalocations
+LuangNamthaU%>% html_nodes(".CurrentConditions--tempValue--3KcTQ") %>% html_text()->LuangNamthaweathernow
+LuangNamthaweathernow<-as.numeric(sub("°", "",LuangNamthaweathernow))
+LuangNamthaweathernow<-sprintf("%.f",LuangNamthaweathernow)
+LuangNamthaweathernow<-as.numeric(LuangNamthaweathernow)
+LuangNamthaweathernow_data<-data.frame(LuangNamthalocations,LuangNamthaweathernow)
+LuangNamtha<-ggplot(LuangNamthaweathernow_data,aes(LuangNamthalocations,LuangNamthaweathernow))+geom_point(aes(color=LuangNamthaweathernow)) + ggtitle("Temperature Now") + theme(plot.title = element_text(lineheight=.8, face="bold"))+labs(y= "Temperature", x = "Location")+labs(colour = "Temperature Now(°C)")
+
+LuangPrabangU%>% html_nodes(".CurrentConditions--location--1Ayv3") %>% html_text()->LuangPrabanglocations
+LuangPrabangU%>% html_nodes(".CurrentConditions--tempValue--3KcTQ") %>% html_text()->LuangPrabangweathernow
+LuangPrabangweathernow<-as.numeric(sub("°", "",LuangPrabangweathernow))
+LuangPrabangweathernow<-sprintf("%.f",LuangPrabangweathernow)
+LuangPrabangweathernow<-as.numeric(LuangPrabangweathernow)
+LuangPrabangweathernow_data<-data.frame(LuangPrabanglocations,LuangPrabangweathernow)
+LuangPrabang<-ggplot(LuangPrabangweathernow_data,aes(LuangPrabanglocations,LuangPrabangweathernow))+geom_point(aes(color=LuangPrabangweathernow)) + ggtitle("Temperature Now") + theme(plot.title = element_text(lineheight=.8, face="bold"))+labs(y= "Temperature", x = "Location")+labs(colour = "Temperature Now(°C)")
+
+OudomxayU%>% html_nodes(".CurrentConditions--location--1Ayv3") %>% html_text()->Oudomxaylocations
+OudomxayU%>% html_nodes(".CurrentConditions--tempValue--3KcTQ") %>% html_text()->Oudomxayweathernow
+Oudomxayweathernow<-as.numeric(sub("°", "",Oudomxayweathernow))
+Oudomxayweathernow<-sprintf("%.f",Oudomxayweathernow)
+Oudomxayweathernow<-as.numeric(Oudomxayweathernow)
+Oudomxayweathernow_data<-data.frame(Oudomxaylocations,Oudomxayweathernow)
+Oudomxay<-ggplot(Oudomxayweathernow_data,aes(Oudomxaylocations,Oudomxayweathernow))+geom_point(aes(color=Oudomxayweathernow)) + ggtitle("Temperature Now") + theme(plot.title = element_text(lineheight=.8, face="bold"))+labs(y= "Temperature", x = "Location")+labs(colour = "Temperature Now(°C)")
+
+PhongsalyU%>% html_nodes(".CurrentConditions--location--1Ayv3") %>% html_text()->Phongsalylocations
+PhongsalyU%>% html_nodes(".CurrentConditions--tempValue--3KcTQ") %>% html_text()->Phongsalyweathernow
+Phongsalyweathernow<-as.numeric(sub("°", "",Phongsalyweathernow))
+Phongsalyweathernow<-sprintf("%.f",Phongsalyweathernow)
+Phongsalyweathernow<-as.numeric(Phongsalyweathernow)
+Phongsalyweathernow_data<-data.frame(Phongsalylocations,Phongsalyweathernow)
+Phongsaly<-ggplot(Phongsalyweathernow_data,aes(Phongsalylocations,Phongsalyweathernow))+geom_point(aes(color=Phongsalyweathernow)) + ggtitle("Temperature Now") + theme(plot.title = element_text(lineheight=.8, face="bold"))+labs(y= "Temperature", x = "Location")+labs(colour = "Temperature Now(°C)")
+
+SalavanU%>% html_nodes(".CurrentConditions--location--1Ayv3") %>% html_text()->Salavanlocations
+SalavanU%>% html_nodes(".CurrentConditions--tempValue--3KcTQ") %>% html_text()->Salavanweathernow
+Salavanweathernow<-as.numeric(sub("°", "",Salavanweathernow))
+Salavanweathernow<-sprintf("%.f",Salavanweathernow)
+Salavanweathernow<-as.numeric(Salavanweathernow)
+Salavanweathernow_data<-data.frame(Salavanlocations,Salavanweathernow)
+Salavan<-ggplot(Salavanweathernow_data,aes(Salavanlocations,Salavanweathernow))+geom_point(aes(color=Salavanweathernow)) + ggtitle("Temperature Now") + theme(plot.title = element_text(lineheight=.8, face="bold"))+labs(y= "Temperature", x = "Location")+labs(colour = "Temperature Now(°C)")
+
+SavannakhetU%>% html_nodes(".CurrentConditions--location--1Ayv3") %>% html_text()->Savannakhetlocations
+SavannakhetU%>% html_nodes(".CurrentConditions--tempValue--3KcTQ") %>% html_text()->Savannakhetweathernow
+Savannakhetweathernow<-as.numeric(sub("°", "",Savannakhetweathernow))
+Savannakhetweathernow<-sprintf("%.f",Savannakhetweathernow)
+Savannakhetweathernow<-as.numeric(Savannakhetweathernow)
+Savannakhetweathernow_data<-data.frame(Savannakhetlocations,Savannakhetweathernow)
+Savannakhet<-ggplot(Savannakhetweathernow_data,aes(Savannakhetlocations,Savannakhetweathernow))+geom_point(aes(color=Savannakhetweathernow)) + ggtitle("Temperature Now") + theme(plot.title = element_text(lineheight=.8, face="bold"))+labs(y= "Temperature", x = "Location")+labs(colour = "Temperature Now(°C)")
+
+VientianeU%>% html_nodes(".CurrentConditions--location--1Ayv3") %>% html_text()->Vientianelocations
+VientianeU%>% html_nodes(".CurrentConditions--tempValue--3KcTQ") %>% html_text()->Vientianeweathernow
+Vientianeweathernow<-as.numeric(sub("°", "",Vientianeweathernow))
+Vientianeweathernow<-sprintf("%.f",Vientianeweathernow)
+Vientianeweathernow<-as.numeric(Vientianeweathernow)
+Vientianeweathernow_data<-data.frame(Vientianelocations,Vientianeweathernow)
+Vientiane<-ggplot(Vientianeweathernow_data,aes(Vientianelocations,Vientianeweathernow))+geom_point(aes(color=Vientianeweathernow)) + ggtitle("Temperature Now") + theme(plot.title = element_text(lineheight=.8, face="bold"))+labs(y= "Temperature", x = "Location")+labs(colour = "Temperature Now(°C)")
+
+SainyabuliU%>% html_nodes(".CurrentConditions--location--1Ayv3") %>% html_text()->Sainyabulilocations
+SainyabuliU%>% html_nodes(".CurrentConditions--tempValue--3KcTQ") %>% html_text()->Sainyabuliweathernow
+Sainyabuliweathernow<-as.numeric(sub("°", "",Sainyabuliweathernow))
+Sainyabuliweathernow<-sprintf("%.f",Sainyabuliweathernow)
+Sainyabuliweathernow<-as.numeric(Sainyabuliweathernow)
+Sainyabuliweathernow_data<-data.frame(Sainyabulilocations,Sainyabuliweathernow)
+Sainyabuli<-ggplot(Sainyabuliweathernow_data,aes(Sainyabulilocations,Sainyabuliweathernow))+geom_point(aes(color=Sainyabuliweathernow)) + ggtitle("Temperature Now") + theme(plot.title = element_text(lineheight=.8, face="bold"))+labs(y= "Temperature", x = "Location")+labs(colour = "Temperature Now(°C)")
+
+SekongU%>% html_nodes(".CurrentConditions--location--1Ayv3") %>% html_text()->Sekonglocations
+SekongU%>% html_nodes(".CurrentConditions--tempValue--3KcTQ") %>% html_text()->Sekongweathernow
+Sekongweathernow<-as.numeric(sub("°", "",Sekongweathernow))
+Sekongweathernow<-sprintf("%.f",Sekongweathernow)
+Sekongweathernow<-as.numeric(Sekongweathernow)
+Sekongweathernow_data<-data.frame(Sekonglocations,Sekongweathernow)
+Sekong<-ggplot(Sekongweathernow_data,aes(Sekonglocations,Sekongweathernow))+geom_point(aes(color=Sekongweathernow)) + ggtitle("Temperature Now") + theme(plot.title = element_text(lineheight=.8, face="bold"))+labs(y= "Temperature", x = "Location")+labs(colour = "Temperature Now(°C)")
+
+XaisombounU%>% html_nodes(".CurrentConditions--location--1Ayv3") %>% html_text()->Xaisombounlocations
+XaisombounU%>% html_nodes(".CurrentConditions--tempValue--3KcTQ") %>% html_text()->Xaisombounweathernow
+Xaisombounweathernow<-as.numeric(sub("°", "",Xaisombounweathernow))
+Xaisombounweathernow<-5/9*(Xaisombounweathernow-32)
+Xaisombounweathernow<-sprintf("%.f",Xaisombounweathernow)
+Xaisombounweathernow<-as.numeric(Xaisombounweathernow)
+Xaisombounweathernow_data<-data.frame(Xaisombounlocations,Xaisombounweathernow)
+Xaisomboun<-ggplot(Xaisombounweathernow_data,aes(Xaisombounlocations,Xaisombounweathernow))+geom_point(aes(color=Xaisombounweathernow)) + ggtitle("Temperature Now") + theme(plot.title = element_text(lineheight=.8, face="bold"))+labs(y= "Temperature", x = "Location")+labs(colour = "Temperature Now(°C)")
+
+XiangkhouangU%>% html_nodes(".CurrentConditions--location--1Ayv3") %>% html_text()->Xiangkhouanglocations
+XiangkhouangU%>% html_nodes(".CurrentConditions--tempValue--3KcTQ") %>% html_text()->Xiangkhouangweathernow
+Xiangkhouangweathernow<-as.numeric(sub("°", "",Xiangkhouangweathernow))
+Xiangkhouangweathernow<-sprintf("%.f",Xiangkhouangweathernow)
+Xiangkhouangweathernow<-as.numeric(Xiangkhouangweathernow)
+Xiangkhouangweathernow_data<-data.frame(Xiangkhouanglocations,Xiangkhouangweathernow)
+Xiangkhouang<-ggplot(Xiangkhouangweathernow_data,aes(Xiangkhouanglocations,Xiangkhouangweathernow))+geom_point(aes(color=Xiangkhouangweathernow)) + ggtitle("Temperature Now") + theme(plot.title = element_text(lineheight=.8, face="bold"))+labs(y= "Temperature", x = "Location")+labs(colour = "Temperature Now(°C)")
+
+ChanthabulyVTU%>% html_nodes(".CurrentConditions--location--1Ayv3") %>% html_text()->Chanthabulylocations
+ChanthabulyVTU%>% html_nodes(".CurrentConditions--tempValue--3KcTQ") %>% html_text()->Chanthabulyweathernow
+Chanthabulyweathernow<-as.numeric(sub("°", "",Chanthabulyweathernow))
+Chanthabulyweathernow<-sprintf("%.f",Chanthabulyweathernow)
+Chanthabulyweathernow<-as.numeric(Chanthabulyweathernow)
+Chanthabulyweathernow_data<-data.frame(Chanthabulylocations,Chanthabulyweathernow)
+Chanthabuly<-ggplot(Chanthabulyweathernow_data,aes(Chanthabulylocations,Chanthabulyweathernow))+geom_point(aes(color=Chanthabulyweathernow)) + ggtitle("Temperature Now") + theme(plot.title = element_text(lineheight=.8, face="bold"))+labs(y= "Temperature", x = "Location")+labs(colour = "Temperature Now(°C)")
+
+SikhottabongVTU%>% html_nodes(".CurrentConditions--location--1Ayv3") %>% html_text()->Sikhottabonglocations
+SikhottabongVTU%>% html_nodes(".CurrentConditions--tempValue--3KcTQ") %>% html_text()->Sikhottabongweathernow
+Sikhottabongweathernow<-as.numeric(sub("°", "",Sikhottabongweathernow))
+Sikhottabongweathernow<-sprintf("%.f",Sikhottabongweathernow)
+Sikhottabongweathernow<-as.numeric(Sikhottabongweathernow)
+Sikhottabongweathernow_data<-data.frame(Sikhottabonglocations,Sikhottabongweathernow)
+Sikhottabong<-ggplot(Sikhottabongweathernow_data,aes(Sikhottabonglocations,Sikhottabongweathernow))+geom_point(aes(color=Sikhottabongweathernow)) + ggtitle("Temperature Now") + theme(plot.title = element_text(lineheight=.8, face="bold"))+labs(y= "Temperature", x = "Location")+labs(colour = "Temperature Now(°C)")
+
+XaysetthaVTU%>% html_nodes(".CurrentConditions--location--1Ayv3") %>% html_text()->Xaysetthalocations
+XaysetthaVTU%>% html_nodes(".CurrentConditions--tempValue--3KcTQ") %>% html_text()->Xaysetthaweathernow
+Xaysetthaweathernow<-as.numeric(sub("°", "",Xaysetthaweathernow))
+Xaysetthaweathernow<-sprintf("%.f",Xaysetthaweathernow)
+Xaysetthaweathernow<-as.numeric(Xaysetthaweathernow)
+Xaysetthaweathernow_data<-data.frame(Xaysetthalocations,Xaysetthaweathernow)
+Xaysettha<-ggplot(Xaysetthaweathernow_data,aes(Xaysetthalocations,Xaysetthaweathernow))+geom_point(aes(color=Xaysetthaweathernow)) + ggtitle("Temperature Now") + theme(plot.title = element_text(lineheight=.8, face="bold"))+labs(y= "Temperature", x = "Location")+labs(colour = "Temperature Now(°C)")
+
+SisattanakVTU%>% html_nodes(".CurrentConditions--location--1Ayv3") %>% html_text()->Sisattanaklocations
+SisattanakVTU%>% html_nodes(".CurrentConditions--tempValue--3KcTQ") %>% html_text()->Sisattanakweathernow
+Sisattanakweathernow<-as.numeric(sub("°", "",Sisattanakweathernow))
+Sisattanakweathernow<-sprintf("%.f",Sisattanakweathernow)
+Sisattanakweathernow<-as.numeric(Sisattanakweathernow)
+Sisattanakweathernow_data<-data.frame(Sisattanaklocations,Sisattanakweathernow)
+Sisattanak<-ggplot(Sisattanakweathernow_data,aes(Sisattanaklocations,Sisattanakweathernow))+geom_point(aes(color=Sisattanakweathernow)) + ggtitle("Temperature Now") + theme(plot.title = element_text(lineheight=.8, face="bold"))+labs(y= "Temperature", x = "Location")+labs(colour = "Temperature Now(°C)")
+
+XaythanyVTU%>% html_nodes(".CurrentConditions--location--1Ayv3") %>% html_text()->Xaythanylocations
+XaythanyVTU%>% html_nodes(".CurrentConditions--tempValue--3KcTQ") %>% html_text()->Xaythanyweathernow
+Xaythanyweathernow<-as.numeric(sub("°", "",Xaythanyweathernow))
+Xaythanyweathernow<-sprintf("%.f",Xaythanyweathernow)
+Xaythanyweathernow<-as.numeric(Xaythanyweathernow)
+Xaythanyweathernow_data<-data.frame(Xaythanylocations,Xaythanyweathernow)
+Xaythany<-ggplot(Xaythanyweathernow_data,aes(Xaythanylocations,Xaythanyweathernow))+geom_point(aes(color=Xaythanyweathernow)) + ggtitle("Temperature Now") + theme(plot.title = element_text(lineheight=.8, face="bold"))+labs(y= "Temperature", x = "Location")+labs(colour = "Temperature Now(°C)")
+
+HadxaifongVTU%>% html_nodes(".CurrentConditions--location--1Ayv3") %>% html_text()->Hadxaifonglocations
+HadxaifongVTU%>% html_nodes(".CurrentConditions--tempValue--3KcTQ") %>% html_text()->Hadxaifongweathernow
+Hadxaifongweathernow<-as.numeric(sub("°", "",Hadxaifongweathernow))
+Hadxaifongweathernow<-sprintf("%.f",Hadxaifongweathernow)
+Hadxaifongweathernow<-as.numeric(Hadxaifongweathernow)
+Hadxaifongweathernow_data<-data.frame(Hadxaifonglocations,Hadxaifongweathernow)
+Hadxaifong<-ggplot(Hadxaifongweathernow_data,aes(Hadxaifonglocations,Hadxaifongweathernow))+geom_point(aes(color=Hadxaifongweathernow)) + ggtitle("Temperature Now") + theme(plot.title = element_text(lineheight=.8, face="bold"))+labs(y= "Temperature", x = "Location")+labs(colour = "Temperature Now(°C)")
+
+NaxaithongVTU%>% html_nodes(".CurrentConditions--location--1Ayv3") %>% html_text()->Naxaithonglocations
+NaxaithongVTU%>% html_nodes(".CurrentConditions--tempValue--3KcTQ") %>% html_text()->Naxaithongweathernow
+Naxaithongweathernow<-as.numeric(sub("°", "",Naxaithongweathernow))
+Naxaithongweathernow<-sprintf("%.f",Naxaithongweathernow)
+Naxaithongweathernow<-as.numeric(Naxaithongweathernow)
+Naxaithongweathernow_data<-data.frame(Naxaithonglocations,Naxaithongweathernow)
+Naxaithong<-ggplot(Naxaithongweathernow_data,aes(Naxaithonglocations,Naxaithongweathernow))+geom_point(aes(color=Naxaithongweathernow)) + ggtitle("Temperature Now") + theme(plot.title = element_text(lineheight=.8, face="bold"))+labs(y= "Temperature", x = "Location")+labs(colour = "Temperature Now(°C)")
+
+SangthongVTU%>% html_nodes(".CurrentConditions--location--1Ayv3") %>% html_text()->Sangthonglocations
+SangthongVTU%>% html_nodes(".CurrentConditions--tempValue--3KcTQ") %>% html_text()->Sangthongweathernow
+Sangthongweathernow<-as.numeric(sub("°", "",Sangthongweathernow))
+Sangthongweathernow<-sprintf("%.f",Sangthongweathernow)
+Sangthongweathernow<-as.numeric(Sangthongweathernow)
+Sangthongweathernow_data<-data.frame(Sangthonglocations,Sangthongweathernow)
+Sangthong<-ggplot(Sangthongweathernow_data,aes(Sangthonglocations,Sangthongweathernow))+geom_point(aes(color=Sangthongweathernow)) + ggtitle("Temperature Now") + theme(plot.title = element_text(lineheight=.8, face="bold"))+labs(y= "Temperature", x = "Location")+labs(colour = "Temperature Now(°C)")
+
+MayparkngumVTU%>% html_nodes(".CurrentConditions--location--1Ayv3") %>% html_text()->Mayparkngumlocations
+MayparkngumVTU%>% html_nodes(".CurrentConditions--tempValue--3KcTQ") %>% html_text()->Mayparkngumweathernow
+Mayparkngumweathernow<-as.numeric(sub("°", "",Mayparkngumweathernow))
+Mayparkngumweathernow<-sprintf("%.f",Mayparkngumweathernow)
+Mayparkngumweathernow<-as.numeric(Mayparkngumweathernow)
+Mayparkngumweathernow_data<-data.frame(Mayparkngumlocations,Mayparkngumweathernow)
+Mayparkngum<-ggplot(Mayparkngumweathernow_data,aes(Mayparkngumlocations,Mayparkngumweathernow))+geom_point(aes(color=Mayparkngumweathernow)) + ggtitle("Temperature Now") + theme(plot.title = element_text(lineheight=.8, face="bold"))+labs(y= "Temperature", x = "Location")+labs(colour = "Temperature Now(°C)")
+
+##
+weatherten %>% html_nodes(".DetailsSummary--daypartName--1Mebr") %>% html_text()->days
+weatherten %>% html_nodes(".DetailsSummary--highTempValue--3x6cL") %>% html_text()->htem
+weatherten %>% html_nodes(".DetailsSummary--lowTempValue--1DlJK") %>% html_text()->ltem
+weatherten %>% html_nodes(".DetailsSummary--condition--mqdxh") %>% html_text()->weathers
+weatherten %>% html_nodes(".DetailsSummary--precip--2ARnx") %>% html_text()->ChanceOfRain
+weatherten %>% html_nodes(".DetailsSummary--wind--Cv4BH") %>% html_text()->windSpeed
+ltem<-as.numeric(sub("°", "",ltem))
+ltem<-5/9*(ltem-32)
+ltem<-sprintf("%.f",ltem)
+ltem<-as.numeric(ltem)
+htem<-as.numeric(sub("°", "",htem))
+htem<-5/9*(htem-32)
+htem<-sprintf("%.f",htem)
+htem<-as.numeric(htem)
+days<-gsub("Mon","",days)
+days<-gsub("Tue","",days)
+days<-gsub("Wed","",days)
+days<-gsub("Thu","",days)
+days<-gsub("Fri","",days)
+days<-gsub("Sat","",days)
+days<-gsub("Sun","",days)
+days<-gsub("Today","0",days)
+days<-gsub("Tonight","0",days)
+days<-as.numeric(days)
+days[1]<-days[2]-1
+weatherten_data<-data.frame(days,htem,ltem,weathers,ChanceOfRain,windSpeed)
+##
+wt<-table(weathers)
+pc<- round(100*wt/sum(wt), 1)
+pie(wt,cex=0.8, main = "Weather in the next 15 days",border="white", col = topo.colors(length(wt)))
+legend("bottomleft", legend=pc, cex = 0.8, fill = topo.colors(length(wt)))
+##
+weatherten_data
+weatherHourly_data
+weatherweek_data
+weathernow_data
+ggplot(weatherten_data) + geom_point(mapping=aes(x=days,y=htem),size=3) + geom_line(mapping=aes(x=days,y=htem),linetype="dotted", color="red", size=1) + ggtitle("Temperature 15 days ahead at day.") + theme(plot.title = element_text(lineheight=.8, face="bold"))+labs(y= "Temperature", x = "Day")
+ggplot(weatherten_data) + geom_point(mapping=aes(x=days,y=ltem),size=3) + geom_line(mapping=aes(x=days,y=ltem),linetype="dotted", color="blue", size=1) + ggtitle("Temperature 15 days ahead at night.") + theme(plot.title = element_text(lineheight=.8, face="bold"))+labs(y= "Temperature", x = "Day")
+##
+
+ht12<-data.frame(hour[1:12],temperature[1:12],condition[1:12])
+ht24<-data.frame(hour[13:24],temperature[13:24],condition[13:24])
+ht36<-data.frame(hour[25:36],temperature[25:36],condition[25:36])
+ht48<-data.frame(hour[37:48],temperature[37:48],condition[37:48])
+
+ggplot(ht12) + geom_line(mapping=aes(x=hour[1:12],y=temperature[1:12]), color="green",size=0.5) + geom_point(mapping=aes(x=hour[1:12],y=temperature[1:12],color=temperature[1:12]),size=3) + ggtitle("Temperature in the next 12 hours.") + theme(plot.title = element_text(lineheight=.8, face="bold"))+labs(y= "Temperature", x = "Hour")+labs(colour = "Temperature")
+ggplot(ht24) + geom_line(mapping=aes(x=hour[13:24],y=temperature[13:24]), color="green",size=0.5) + geom_point(mapping=aes(x=hour[13:24],y=temperature[13:24],color=temperature[13:24]),size=3) + ggtitle("Temperature in the next 24 hours.") + theme(plot.title = element_text(lineheight=.8, face="bold"))+labs(y= "Temperature", x = "Hour")+labs(colour = "Temperature")
+ggplot(ht36) + geom_line(mapping=aes(x=hour[25:36],y=temperature[25:36]), color="red",size=0.5) + geom_point(mapping=aes(x=hour[25:36],y=temperature[25:36],color=temperature[25:36]),size=3) + ggtitle("Temperature in the next 36 hours.") + theme(plot.title = element_text(lineheight=.8, face="bold"))+labs(y= "Temperature", x = "Hour")+labs(colour = "Temperature")
+ggplot(ht48) + geom_line(mapping=aes(x=hour[37:48],y=temperature[37:48]), color="red",size=0.5) +  geom_point(mapping=aes(x=hour[37:48],y=temperature[37:48],color=temperature[37:48]),size=3) + ggtitle("Temperature in the next 48 hours.") + theme(plot.title = element_text(lineheight=.8, face="bold"))+labs(y= "Temperature", x = "Hour")+labs(colour = "Temperature")
+
+ggplot(weatherweek_data) + geom_point(mapping=aes(x=dname,y=Htem),size=3) + ggtitle("Temperature in weekend at Day.") + theme(plot.title = element_text(lineheight=.8, face="bold"))+labs(y= "Temperature", x = "Weekend")
+ggplot(weatherweek_data) + geom_point(mapping=aes(x=dname,y=Ltem),size=3) + ggtitle("Temperature in weekend at Night.") + theme(plot.title = element_text(lineheight=.8, face="bold"))+labs(y= "Temperature", x = "Weekend")
+
+WeatherNow<-ggplot(weathernow_data,aes(locations,wtnow))+geom_point(aes(color=wtnow)) + ggtitle("Temperature Now") + theme(plot.title = element_text(lineheight=.8, face="bold"))+labs(y= "Temperature", x = "Location")+labs(colour = "Temperature Now(°C)")
